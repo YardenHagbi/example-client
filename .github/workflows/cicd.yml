@@ -19,11 +19,6 @@ jobs:
       SLOT: ${{ github.ref == 'refs/heads/main' && 'production' || 'dev' }}
 
     steps:
-      - name: Set environment variables
-        run: |
-          echo "API URL: $VITE_API_URL"
-          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> $GITHUB_ENV
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -34,6 +29,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Set environment variables
+        run: |
+          echo "API URL: $VITE_API_URL"
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> $GITHUB_ENV
 
       - name: Build project
         run: npm run build
