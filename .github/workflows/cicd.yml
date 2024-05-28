@@ -17,12 +17,12 @@ jobs:
     environment: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
     env:
       SLOT: ${{ github.ref == 'refs/heads/main' && 'production' || 'dev' }}
-      
+
     steps:
       - name: Set environment variables
         run: |
-          echo "VITE_API_URL=${{ env.VITE_API_URL }}" >> $GITHUB_ENV
-          echo "VITE_OTHER_ENV_VAR=${{ env.VITE_OTHER_ENV_VAR }}" >> $GITHUB_ENV
+          echo "API URL: $VITE_API_URL"
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> $GITHUB_ENV
 
       - name: Checkout code
         uses: actions/checkout@v4
